@@ -8,7 +8,7 @@ fda_approval_timeliner_plot()
 fda_approval_timeseries_plot()
 
 skincancerRx_data |> 
-#  filter(Dz == "MCC") |> 
+  filter(Dz == "MCC") |> 
   fda_approval_timeseries_df() |> 
   fda_approval_timeseries_plot()
 

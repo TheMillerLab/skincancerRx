@@ -2,10 +2,21 @@ Package: skincancerRx
 Type: Package
 Title: Generates Visualizations for Data Related to FDA Approvals in Skin Cancer
 Version: 0.1.0
-Author: David Miller
-Maintainer: The package maintainer <dmmiller12345@gmail.com>
+Authors@R:
+    c(
+    person(given = "David", 
+           family = "Miller", 
+           email = "dmiller4@mgh.harvard.edu", 
+           role = c("aut", "cre"),
+           comment = c(ORCID = 0000-0001-9736-9119)
+           ),
+    person(given = "Sophia", 
+           family = "Shalhout", 
+           role = c("aut")
+           )
+           )
+Maintainer: David Miller <dmmiller12345@gmail.com>
 Description: Generates visualizations for data Related to FDA Approvals in Skin Cancer
-    Use four spaces when indenting paragraphs within the Description.
 License: MIT
 Encoding: UTF-8
 LazyData: true

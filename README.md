@@ -9,7 +9,7 @@
 <font color = 'orange' ><b>skincancerRx</b></font> provides a set of verbs that wrangle, process and graph data related to FDA approvals in skin caner:  
 
   | Verbs | Function |
-  | :---- |    :-------------   |
+  | :---- |    :-----------   |
   |fda_actions_per_disease_plot( )  | generates a bar chart of the number of FDA approvals per type of skin cancer |
   |fda_approval_timeliner_df( ) | creates a data frame of FDA approval data that can then be used in the `fda_approval_timeliner_plot()` function |
   |fda_approval_timeliner_plot( ) | creates a data visualization of FDA approvals in skin cancer |
