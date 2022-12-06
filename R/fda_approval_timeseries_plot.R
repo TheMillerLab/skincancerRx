@@ -1,23 +1,29 @@
 #' Creates an interactive plot of fda approvals in skin cancer overtime
 #' @description
 #' `fda_approval_timeseries_plot()` Creates an interactive plot of fda approvals in skin cancer overtime
-#' @param .data  DF downstream of fda_approval_timeseries_df.
-#'
+#' @param .data  DF downstream of fda_approval_timeseries_df. Default is the data processed, but this also allows for customization of original FDA data
+#' @param .title character string of the title of the plot
+#' @param .startdate character string of data in Y-M-D format that designates origin of the plot, defaults to "1948-01-01"
+#' @param .enddate character string of data in Y-M-D format that designates end of the plot, defaults to Sys.Date()
+#' @param .legend TRUE or FALSE to designate whether or not the plot legend will be present
 #' @return an interactive plot
 #' @export
+#' @examples 
+#' fda_skin_cancer_data |> 
+#'  filter(Dz == "Melanoma") |> 
+#'  fda_approval_timeseries_df() |> 
+#'  fda_approval_timeseries_plot()
+#' 
+#' fda_skin_cancer_data |> 
+#'  filter(Dz == "MCC") |> 
+#'  fda_approval_timeseries_df() |> 
+#'  fda_approval_timeseries_plot(.startdate = "2016-01-01")
 #'
-fda_approval_timeseries_plot <- function(.data,
-                                         Title = "<b>FDA Approvals in Cutaneous Oncology<b>",
-                                         StartDate = "1948-01-01",
-                                         EndDate = Sys.Date(),
-                                         Legend = TRUE){
-
-  ##########################################################################################################################
-  # load packages
-  ##########################################################################################################################
-  library(tidyverse)
-  library(plotly)
-
+fda_approval_timeseries_plot <- function(.data = fda_approval_timeseries_df(),
+                                         .title = "<b>FDA Approvals in Cutaneous Oncology<b>",
+                                         .startdate = "1948-01-01",
+                                         .enddate = Sys.Date(),
+                                         .legend = TRUE){
   ##########################################################################################################################
   # load data
   ##########################################################################################################################
@@ -49,15 +55,15 @@ fda_approval_timeseries_plot <- function(.data,
 
 
   # Create a date vector for the limits of the x axis, for some reason this is necessary
-  dateVec2 <- seq(from = as.Date(StartDate),
+  dateVec2 <- seq(from = as.Date(.startdate),
                   #to = as.Date("2021-12-31"),
-                  to = EndDate,
+                  to = .enddate,
                   by = "days")
 
   # The vector below will be used to set the x axis breaks, so that you can control them; in our case I wanted just 4 digit year dates, so I'm using %Y, but in reality, the labels = date_form() will control the presentation of the years
-  x_axis_label_FDA_Timeline <- seq(from = as.Date(StartDate, format = "%Y"),
+  x_axis_label_FDA_Timeline <- seq(from = as.Date(.startdate, format = "%Y"),
                                    #to = as.Date("2021-12-31", format =  "%Y"),
-                                   to = EndDate,
+                                   to = .enddate,
                                    by = "10 years")
 
   ##########################################################################################################################
@@ -118,10 +124,10 @@ fda_approval_timeseries_plot <- function(.data,
 
   ggplotly(fda.approved.plot ,
            tooltip = c("text")) %>%
-    layout(title = Title,
+    layout(title = .title,
            titlefont = list(size = 28, color = "black",
                             family = "Arial")) %>%
-    layout(showlegend = Legend,
+    layout(showlegend = .legend,
            xaxis = list(tickfont = list(size = 20)))  %>%
     layout(hoverlabel = list(font=list(size=22))) %>%
     layout(margin = list(

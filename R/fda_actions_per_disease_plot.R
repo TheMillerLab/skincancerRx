@@ -1,17 +1,17 @@
 #' Create a bar graph of FDA Approvals Per Disease
 #' @description
-#' `actions.per.dz.plot()` Create a bar graph of FDA Approvals Per Disease
-#' @param data  A data frame of FDA cutaneous oncology data
+#' `fda_actions_per_disease_plot()` Create a bar graph of FDA approvals per type of skin cancer
+#' @param .data  A data frame of FDA cutaneous oncology data
 #'
 #' @return a data frame
 #' @export
 #'
-actions.per.dz.plot <- function(data){
+fda_actions_per_disease_plot <- function(.data = skincancerRx_data){
 
   ##########################################################################################################################
   # load data
   ##########################################################################################################################
-  dt <- data
+  dt <- .data
 
   ##########################################################################################################################
   # Select Therapies with an indication for Skin Cancer

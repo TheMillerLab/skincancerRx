@@ -1,18 +1,17 @@
 #' Create a data frame of drugs with an indication for skin cancer
 #' @description
-#' `table.rx.skin.cancer()` Creates a table of fda approvals in skin cancer
-#'
-#' @return an interactive plot
+#' `table_rx_skin_cancer()` Creates a table of fda approvals in skin cancer
+#' @param .data A data frame of unprocessed FDA appovals in skin cancer. Defaults to the embedded data set
+#' @return a data frame
 #' @export
 #'
-table.rx.skin.cancer <- function(){
+table_rx_skin_cancer <- function(.data = skincancerRx_data){
 
-  library(readxl)
-  library(tidyverse)
-  library(lubridate)
-
-
-  dt <- read.csv("/Users/davidmiller/Dropbox (Partners HealthCare)/mLab/The Evolving Landscape of Regulatory Medicine in Cutaneous Oncology/FDA_cOnc_Data/files/FDA_cONC.csv")
+  ##########################################################################################################################
+  # load data
+  ##########################################################################################################################
+  dt <- .data
+  
 
   ### Table 1. Therapies with Indications for Skin Cancer
 
@@ -96,8 +95,10 @@ table.rx.skin.cancer <- function(){
 
 
 
+  ##########################################################################################################################
+  # return data frame of interest
+  ##########################################################################################################################
 
-
-return(table_drug_main)
+  return(table_drug_main)
 
 }

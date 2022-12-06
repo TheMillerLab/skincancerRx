@@ -4,7 +4,10 @@
 \alias{fda_approval_timeseries_df}
 \title{Creates a data frame that can be used by fda_approval_timeseries_plot to generate an interactive plot}
 \usage{
-fda_approval_timeseries_df()
+fda_approval_timeseries_df(.data = skincancerRx_data)
+}
+\arguments{
+\item{.data}{A data frame of FDA cutaneous oncology data, defaults to the embedded data set}
 }
 \value{
 a data frame

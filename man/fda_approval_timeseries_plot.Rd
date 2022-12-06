@@ -5,19 +5,39 @@
 \title{Creates an interactive plot of fda approvals in skin cancer overtime}
 \usage{
 fda_approval_timeseries_plot(
-  .data,
-  Title = "<b>FDA Approvals in Cutaneous Oncology<b>",
-  StartDate = "1948-01-01",
-  EndDate = Sys.Date(),
-  Legend = TRUE
+  .data = fda_approval_timeseries_df(),
+  .title = "<b>FDA Approvals in Cutaneous Oncology<b>",
+  .startdate = "1948-01-01",
+  .enddate = Sys.Date(),
+  .legend = TRUE
 )
 }
 \arguments{
-\item{.data}{DF downstream of fda_approval_timeseries_df.}
+\item{.data}{DF downstream of fda_approval_timeseries_df. Default is the data processed, but this also allows for customization of original FDA data}
+
+\item{.title}{character string of the title of the plot}
+
+\item{.startdate}{character string of data in Y-M-D format that designates origin of the plot, defaults to "1948-01-01"}
+
+\item{.enddate}{character string of data in Y-M-D format that designates end of the plot, defaults to Sys.Date()}
+
+\item{.legend}{TRUE or FALSE to designate whether or not the plot legend will be present}
 }
 \value{
 an interactive plot
 }
 \description{
 `fda_approval_timeseries_plot()` Creates an interactive plot of fda approvals in skin cancer overtime
+}
+\examples{
+fda_skin_cancer_data |> 
+ filter(Dz == "Melanoma") |> 
+ fda_approval_timeseries_df() |> 
+ fda_approval_timeseries_plot()
+
+fda_skin_cancer_data |> 
+ filter(Dz == "MCC") |> 
+ fda_approval_timeseries_df() |> 
+ fda_approval_timeseries_plot(.startdate = "2016-01-01")
+
 }

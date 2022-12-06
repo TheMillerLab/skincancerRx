@@ -1,17 +1,17 @@
 #' Creates an interactive plot of response rates for single arm trials
 #' @description
 #' `response_rate_plot()` Creates an interactive plot of response rates for single arm trials
-#' @param data  A data frame of response rates of therapies Required.
+#' @param .data  A data frame downstream of the function `response_rate_df()`. Defaults to that data set, but allows for customization
 #'
 #' @return an interactive plot
 #' @export
 #'
-response_rate_plot <- function(data){
+response_rate_plot <- function(.data = skincancerRx::skincancerRx_data |> skincancerRx::response_rate_df()){
 
   ##########################################################################################################################
   # load data
   ##########################################################################################################################
-  dt <- data
+  dt <- .data
 
   ##########################################################################################################################
   # Create Hover Text

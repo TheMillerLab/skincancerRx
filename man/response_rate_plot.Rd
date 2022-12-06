@@ -4,10 +4,12 @@
 \alias{response_rate_plot}
 \title{Creates an interactive plot of response rates for single arm trials}
 \usage{
-response_rate_plot(data)
+response_rate_plot(
+  .data = skincancerRx::response_rate_df(skincancerRx::skincancerRx_data)
+)
 }
 \arguments{
-\item{data}{A data frame of response rates of therapies Required.}
+\item{.data}{A data frame downstream of the function `response_rate_df()`. Defaults to that data set, but allows for customization}
 }
 \value{
 an interactive plot

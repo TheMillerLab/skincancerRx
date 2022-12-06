@@ -4,10 +4,10 @@
 \alias{response_rate_df}
 \title{Creates a data frame that can be used by response_rate_plot to generate an interactive plot}
 \usage{
-response_rate_df(data)
+response_rate_df(.data = skincancerRx_data)
 }
 \arguments{
-\item{data}{A data frame of FDA cutaneous oncology data}
+\item{.data}{A data frame of FDA cutaneous oncology data. Defaults to the embedded dataset}
 }
 \value{
 a data frame

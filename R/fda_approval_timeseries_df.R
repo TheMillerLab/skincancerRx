@@ -1,16 +1,16 @@
 #' Creates a data frame that can be used by fda_approval_timeseries_plot to generate an interactive plot
 #' @description
 #' `fda_approval_timeseries_df()` Creates a data frame that can be used by fda_appropval_timeseries_plot to generate an interactive plot
-#'
+#' @param .data  A data frame of FDA cutaneous oncology data, defaults to the embedded data set
 #' @return a data frame
 #' @export
 #'
-fda_approval_timeseries_df <- function(){
+fda_approval_timeseries_df <- function(.data = skincancerRx_data){
 
   ##########################################################################################################################
   # load data
   ##########################################################################################################################
-  dt <- read.csv("/Users/davidmiller/Dropbox (Partners HealthCare)/mLab/The Evolving Landscape of Regulatory Medicine in Cutaneous Oncology/FDA_cOnc_Data/files/FDA_cONC.csv")
+  dt <- .data
 
   # convert dates into the appropriate format for R
   dt$Action_Date <- as.Date(dt$Action_Date)

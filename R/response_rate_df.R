@@ -1,17 +1,17 @@
 #' Creates a data frame that can be used by response_rate_plot to generate an interactive plot
 #' @description
 #' `response_rate_df()` Creates a data frame that can be used by response_rate_plot to generate an interactive plot trials
-#' @param data  A data frame of FDA cutaneous oncology data
+#' @param .data  A data frame of FDA cutaneous oncology data. Defaults to the embedded dataset
 #'
 #' @return a data frame
 #' @export
 #'
-response_rate_df <- function(data){
+response_rate_df <- function(.data = skincancerRx_data){
 
   ##########################################################################################################################
   # load data
   ##########################################################################################################################
-  dt <- data
+  dt <- .data 
 
   ##########################################################################################################################
   # Format data
@@ -19,13 +19,14 @@ response_rate_df <- function(data){
   # convert dates into the appropriate format for R
   dt$Action_Date <- as.Date(dt$Action_Date)
 
-
-  # Filter for only those actions up to August 1, 2021
-  dt <- dt %>%
-    filter(Action_Date <= "2021-08-01")
+#
+#  # Filter for only those actions up to August 1, 2021
+#  dt <- dt %>%
+#    filter(Action_Date <= "2021-08-01")
 
   dt <- dt %>%
     mutate(row_num = row_number())
+  
   dt_length <- length(dt$row_num)
 
   # Let's pick only those rows with and indication or usage in skin cancer
@@ -64,10 +65,10 @@ response_rate_df <- function(data){
   # Create a data frame of non comparator trials
   ##########################################################################################################################
 
-  trials_nonComp <- dt_ind_usage %>%
+  trials_nonComp.pre <- dt_ind_usage %>%
     filter(Comparator_Study_Placebo_Observation_or_Active_Comparator_N_Y == 0)
 
-  trials_nonComp <- trials_nonComp %>%
+  trials_nonComp.pre.1 <- trials_nonComp.pre %>%
     dplyr::select(name,
                   application_number,
                   Indication,
@@ -76,8 +77,6 @@ response_rate_df <- function(data){
                   Action_Date,
                   Dz,
                   Endpoint_shortened,
-                  EE.Var,
-                  EE.Raw,
                   Effect_Estimate,
                   Response_Rate,
                   N,
@@ -85,7 +84,6 @@ response_rate_df <- function(data){
                   ub_95CI,
                   lb_95CI_proposed,
                   Toolshort,
-                  Accelerated_Approval,
                   Mechanism_long
                   )
 
@@ -93,19 +91,19 @@ response_rate_df <- function(data){
   ##########################################################################################################################
   # Remove "RR:" and %
   ##########################################################################################################################
-  trials_nonComp$Response_Rate <- stringr::str_replace_all(
-    string = trials_nonComp$Response_Rate,
+  trials_nonComp.pre.1$Response_Rate <- stringr::str_replace_all(
+    string = trials_nonComp.pre.1$Response_Rate,
     pattern = "RR:",
     replacement = ""
   )
 
-  trials_nonComp <- splitstackshape::cSplit(
-    indt = trials_nonComp,
+  trials_nonComp.1 <- splitstackshape::cSplit(
+    indt = trials_nonComp.pre.1,
     splitCols = "Response_Rate",
     sep = "%"
   )
 
-  trials_nonComp <- trials_nonComp %>%
+  trials_nonComp <- trials_nonComp.1 %>%
     rename(Response_Rate = Response_Rate_1) %>%
     select(-Response_Rate_2, -Response_Rate_3)
 
