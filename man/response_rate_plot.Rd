@@ -5,11 +5,59 @@
 \title{Creates an interactive plot of response rates for single arm trials}
 \usage{
 response_rate_plot(
-  .data = skincancerRx::response_rate_df(skincancerRx::skincancerRx_data)
+  .data = skincancerRx::response_rate_df(skincancerRx::skincancerRx_data),
+  .responseratedotsize = 4,
+  .hoverlabeltextsize = 20,
+  .lowerboundtextpositionX = "2013-11-25",
+  .lowerboundtextpositionY = 1.5,
+  .lowerboundfontsize = 4,
+  .xlabelpositionX = "2010-01-01",
+  .xlabelpositionY = 1.55,
+  .xsize = 6,
+  .pointpositionX = "2010-01-01",
+  .pointpositionY = 5.5,
+  .pointsize = 4.2,
+  .responsepositionX = "2014-01-01",
+  .responsepositionY = 5.5,
+  .responsefontsize = 4,
+  .titlefontsize = 28,
+  .legend = FALSE
 )
 }
 \arguments{
 \item{.data}{A data frame downstream of the function `response_rate_df()`. Defaults to that data set, but allows for customization}
+
+\item{.responseratedotsize}{numeric value of the size of the dot for the response rate seen on the graph, defaults to "4"}
+
+\item{.hoverlabeltextsize}{numeric value of the size of the hover text, defaults to "20"}
+
+\item{.lowerboundtextpositionX}{character string of the x axis position of the text at the bottom of the graph "Lower Bound 95CI Proposed by the Sponsor", defaults to "2013-11-25"}
+
+\item{.lowerboundtextpositionY}{numeric value of the y axis position of the text "Lower Bound 95CI Proposed by the Sponsor", defaults to 1.5}
+
+\item{.lowerboundfontsize}{numeric value of the size of the text "Lower Bound 95CI Proposed by the Sponsor", defaults to 20}
+
+\item{.xlabelpositionX}{character string of the x axis position of the text at the bottom of the graph "X", defaults to "2010-01-01"}
+
+\item{.xlabelpositionY}{numeric value of the y axis position of the text at the bottom of the graph "X", defaults to 1.55}
+
+\item{.xsize}{numeric value of the size of the "X" at the bottom of the graph, defaults to 6}
+
+\item{.pointpositionX}{character string of the x axis position of the point (or filled circle) at the bottom of the graph which accompanies the "Response Rate...", defaults to "2010-01-01"}
+
+\item{.pointpositionY}{numeric value of the y axis position of the the point at the bottom of the graph which accompanies the "Response Rate...", defaults to 5.5}
+
+\item{.pointsize}{numeric value of the size of the point (or filled circle) at the bottom of the graph, defaults to 4.2}
+
+\item{.responsepositionX}{character string of the x axis position of the text "Response Rate in the Label_Modifying Trial(s)", defaults to "2014-01-01"}
+
+\item{.responsepositionY}{numeric value of the y axis position of the text "Response Rate in the Label_Modifying Trial(s)", defaults to 5.5}
+
+\item{.responsefontsize}{numeric value of the font size of the text "Response Rate in the Label_Modifying Trial(s)", defaults to 4}
+
+\item{.titlefontsize}{numeric value of the font size of the title of the graph", defaults to 28}
+
+\item{.legend}{TRUE for present; FALSE to omit}
 }
 \value{
 an interactive plot

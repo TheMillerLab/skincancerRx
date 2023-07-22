@@ -1,12 +1,29 @@
 #' Create a bar graph of FDA Approvals Per Disease
 #' @description
 #' `fda_actions_per_disease_plot()` Create a bar graph of FDA approvals per type of skin cancer
+#'
 #' @param .data  A data frame of FDA cutaneous oncology data
+#' @param .yaxistitlefont size of y axis title
+#' @param .xaxistitlefont size of x axis title
+#' @param .plottitlefont size of plot title
+#' @param .xaxistextfont size of x axis text
+#' @param .yaxistextfont size of y axis text
+#' @param .geomtextfont size of geom_text 
+#' @param .plotsubtitlefont size of subtitle
 #'
 #' @return a data frame
 #' @export
 #'
-fda_actions_per_disease_plot <- function(.data = skincancerRx_data){
+fda_actions_per_disease_plot <- function(
+    .data = skincancerRx_data,
+    .yaxistitlefont = 22,
+    .xaxistitlefont = 22,
+    .plottitlefont = 24,
+    .xaxistextfont = 19,
+    .yaxistextfont = 22,
+    .geomtextfont = 7,
+    .plotsubtitlefont = 22
+    ){
 
   ##########################################################################################################################
   # load data
@@ -45,9 +62,9 @@ fda_actions_per_disease_plot <- function(.data = skincancerRx_data){
              fill = UniversalID)) +
     geom_bar()+
     theme(axis.text.x = element_text(face="bold",
-                                     size=19, angle=0),
+                                     size=.xaxistextfont, angle=0),
           axis.text.y = element_text(face="bold",
-                                     size=22, angle=0)) +
+                                     size=.yaxistextfont, angle=0)) +
     theme(panel.grid.major = element_blank(),
           panel.grid.minor = element_blank(),
           panel.background = element_blank(),
@@ -56,22 +73,22 @@ fda_actions_per_disease_plot <- function(.data = skincancerRx_data){
     ylab("Number of FDA Actions") +
     geom_text(stat = "count",
               aes(label = ..count..),
-              size = 7,
+              size = .geomtextfont,
               vjust = -0.4) +
     #Format Title#############
   labs(title = "FDA Actions In Cutaneous Oncology",
        subtitle = "Actions Per Disease") +
     theme(plot.title = element_text(hjust=0.5,
-                                    size = 24,
+                                    size = .plottitlefont,
                                     face = "bold")) +
     theme(plot.subtitle = element_text(hjust = 0.5,
-                                       size = 22,
+                                       size = .plotsubtitlefont,
                                        face = "italic")) +
     theme(axis.title.y = element_text(face="bold",
-                                      size = 22,
+                                      size = .yaxistitlefont,
                                       margin = margin(t = 0, r = 10, b = 0, l = 0))) +
     theme(axis.title.x = element_text(face="bold",
-                                      size = 22,
+                                      size = .xaxistitlefont,
                                       margin = margin(t = 10, r = 0, b = 0, l = 0))) +
     theme(legend.position = "none") +
     scale_y_continuous(limits = c(0,50),

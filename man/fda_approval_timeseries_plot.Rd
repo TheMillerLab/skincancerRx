@@ -9,7 +9,12 @@ fda_approval_timeseries_plot(
   .title = "<b>FDA Approvals in Cutaneous Oncology<b>",
   .startdate = "1948-01-01",
   .enddate = Sys.Date(),
-  .legend = TRUE
+  .legendtextsize = 14,
+  .hoverlabeltextsize = 20,
+  .xaxistickfontsize = 14,
+  .legend = TRUE,
+  .legendorientationy = 1,
+  .legendorientationx = 0.01
 )
 }
 \arguments{
@@ -21,7 +26,17 @@ fda_approval_timeseries_plot(
 
 \item{.enddate}{character string of data in Y-M-D format that designates end of the plot, defaults to Sys.Date()}
 
+\item{.legendtextsize}{numeric value of the legend text font size}
+
+\item{.hoverlabeltextsize}{numeric value of the hover text font size}
+
+\item{.xaxistickfontsize}{numeric value of the x axis text font size}
+
 \item{.legend}{TRUE or FALSE to designate whether or not the plot legend will be present}
+
+\item{.legendorientationy}{numeric value of the y position of the legend}
+
+\item{.legendorientationx}{numeric value of the x position of the legend}
 }
 \value{
 an interactive plot

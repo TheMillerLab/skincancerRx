@@ -13,6 +13,10 @@ fda_approval_timeliner_plot(
   .textbuffer = 0.5,
   .topboundary = 100,
   .bottomboundary = 0,
+  .geomtextsize = 4,
+  .legendtextsize = 12,
+  .hoverlabeltextsize = 20,
+  .xaxistickfontsize = 14,
   .legend = TRUE
 )
 }
@@ -32,6 +36,14 @@ fda_approval_timeliner_plot(
 \item{.topboundary}{numeric value that represents the distance from the top of data visualization to the title}
 
 \item{.bottomboundary}{numeric value that represents the distance from the bottom of the data visualization to the legend}
+
+\item{.geomtextsize}{numeric value of the geom_text font size}
+
+\item{.legendtextsize}{numeric value of the legend text font size}
+
+\item{.hoverlabeltextsize}{numeric value of the hover text font size}
+
+\item{.xaxistickfontsize}{numeric value of the x axis text font size}
 
 \item{.legend}{TRUE or FALSE to show legend or not}
 }

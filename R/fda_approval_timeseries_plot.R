@@ -1,11 +1,18 @@
 #' Creates an interactive plot of fda approvals in skin cancer overtime
 #' @description
 #' `fda_approval_timeseries_plot()` Creates an interactive plot of fda approvals in skin cancer overtime
+#'
 #' @param .data  DF downstream of fda_approval_timeseries_df. Default is the data processed, but this also allows for customization of original FDA data
 #' @param .title character string of the title of the plot
 #' @param .startdate character string of data in Y-M-D format that designates origin of the plot, defaults to "1948-01-01"
 #' @param .enddate character string of data in Y-M-D format that designates end of the plot, defaults to Sys.Date()
+#' @param .legendtextsize numeric value of the legend text font size
+#' @param .hoverlabeltextsize numeric value of the hover text font size
+#' @param .xaxistickfontsize numeric value of the x axis text font size
 #' @param .legend TRUE or FALSE to designate whether or not the plot legend will be present
+#' @param .legendorientationy numeric value of the y position of the legend
+#' @param .legendorientationx numeric value of the x position of the legend
+#'
 #' @return an interactive plot
 #' @export
 #' @examples 
@@ -23,7 +30,12 @@ fda_approval_timeseries_plot <- function(.data = fda_approval_timeseries_df(),
                                          .title = "<b>FDA Approvals in Cutaneous Oncology<b>",
                                          .startdate = "1948-01-01",
                                          .enddate = Sys.Date(),
-                                         .legend = TRUE){
+                                         .legendtextsize = 14,
+                                         .hoverlabeltextsize = 20,
+                                         .xaxistickfontsize = 14,
+                                         .legend = TRUE,
+                                         .legendorientationy = 1,
+                                         .legendorientationx = 0.01){
   ##########################################################################################################################
   # load data
   ##########################################################################################################################
@@ -128,8 +140,8 @@ fda_approval_timeseries_plot <- function(.data = fda_approval_timeseries_df(),
            titlefont = list(size = 28, color = "black",
                             family = "Arial")) %>%
     layout(showlegend = .legend,
-           xaxis = list(tickfont = list(size = 20)))  %>%
-    layout(hoverlabel = list(font=list(size=22))) %>%
+           xaxis = list(tickfont = list(size = .xaxistickfontsize)))  %>%
+    layout(hoverlabel = list(font=list(size=.hoverlabeltextsize))) %>%
     layout(margin = list(
       t = 120,
       b = 20,
@@ -138,7 +150,7 @@ fda_approval_timeseries_plot <- function(.data = fda_approval_timeseries_df(),
     )) %>%
     layout(legend = list(
       font = list(
-        size = 16
+        size = .legendtextsize
       )
     )) %>%
     layout(legend = list(
@@ -146,7 +158,7 @@ fda_approval_timeseries_plot <- function(.data = fda_approval_timeseries_df(),
         text="<b>Type of Skin Cancer</b>"
       )
     )) %>%
-    layout(legend = list(orientation = "V", x = 0.01, y = 1))
+    layout(legend = list(orientation = "V", x = .legendorientationx, y = .legendorientationy))
 
 
 

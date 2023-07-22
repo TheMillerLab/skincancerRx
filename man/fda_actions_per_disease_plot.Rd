@@ -4,10 +4,33 @@
 \alias{fda_actions_per_disease_plot}
 \title{Create a bar graph of FDA Approvals Per Disease}
 \usage{
-fda_actions_per_disease_plot(.data = skincancerRx_data)
+fda_actions_per_disease_plot(
+  .data = skincancerRx_data,
+  .yaxistitlefont = 22,
+  .xaxistitlefont = 22,
+  .plottitlefont = 24,
+  .xaxistextfont = 19,
+  .yaxistextfont = 22,
+  .geomtextfont = 7,
+  .plotsubtitlefont = 22
+)
 }
 \arguments{
 \item{.data}{A data frame of FDA cutaneous oncology data}
+
+\item{.yaxistitlefont}{size of y axis title}
+
+\item{.xaxistitlefont}{size of x axis title}
+
+\item{.plottitlefont}{size of plot title}
+
+\item{.xaxistextfont}{size of x axis text}
+
+\item{.yaxistextfont}{size of y axis text}
+
+\item{.geomtextfont}{size of geom_text}
+
+\item{.plotsubtitlefont}{size of subtitle}
 }
 \value{
 a data frame

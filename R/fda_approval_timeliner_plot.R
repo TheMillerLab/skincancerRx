@@ -10,6 +10,10 @@
 #' @param .topboundary numeric value that represents the distance from the top of data visualization to the title
 #' @param .bottomboundary numeric value that represents the distance from the bottom of the data visualization to the legend
 #' @param .legend TRUE or FALSE to show legend or not
+#' @param .geomtextsize numeric value of the geom_text font size
+#' @param .legendtextsize numeric value of the legend text font size
+#' @param .hoverlabeltextsize numeric value of the hover text font size
+#' @param .xaxistickfontsize numeric value of the x axis text font size
 #' 
 #' @return A ggplotly Timeline of the FDA data set
 #' 
@@ -28,6 +32,10 @@ fda_approval_timeliner_plot <- function(.data = fda_approval_timeliner_df(),
                            .textbuffer = 0.5,
                            .topboundary = 100,
                            .bottomboundary = 0,
+                           .geomtextsize = 4,
+                           .legendtextsize = 12,
+                           .hoverlabeltextsize = 20,
+                           .xaxistickfontsize = 14,
                            .legend = TRUE){
   ##########################################################################################################################
   # Load Data
@@ -124,7 +132,9 @@ fda_approval_timeliner_plot <- function(.data = fda_approval_timeliner_df(),
           panel.grid.minor = element_blank(),
           axis.line.y = element_blank(),
           axis.line.x = element_blank())+
-    theme(axis.text.x = element_text(face = "bold", size = 12, vjust = -0.5),
+    theme(axis.text.x = element_text(
+      face = "bold", size = 12, vjust = -0.5
+      ),
           axis.text.y = element_blank(),
           axis.ticks.x = element_line(),
           axis.ticks.y = element_blank(),
@@ -149,7 +159,7 @@ fda_approval_timeliner_plot <- function(.data = fda_approval_timeliner_df(),
                   label = stringr::str_wrap(name, .labelwrap),
                   text = hover,
                   color = Mechanism), #choose description 1 or 2 depending on which you want colored
-              size = 4.0,
+              size = .geomtextsize,
               position = position_nudge()) +
     ##### Format the X Axis
     scale_x_date(breaks = x_axis_label, # this is the name of a vector i created to set the x-axis, otherwise R was deciding for me
@@ -163,7 +173,7 @@ fda_approval_timeliner_plot <- function(.data = fda_approval_timeliner_df(),
       legend.margin = margin(1, 1, 1, 1),
       legend.title = element_text(size= 14, face = "bold"),
       legend.key = element_rect(size = 10),
-      legend.text = element_text(size = 11, face = "bold")) +
+      legend.text = element_text(size = .legendtextsize, face = "bold")) +
     scale_y_continuous(expand = c(0.01, 0.01))  # #eliminates the space between Y axis and x axis
   
   
@@ -178,8 +188,8 @@ fda_approval_timeliner_plot <- function(.data = fda_approval_timeliner_df(),
                             family = "Arial")) %>%
     layout(subtitle = "testing") %>%
     layout(showlegend = .legend) %>%
-    layout(hoverlabel = list(font=list(size=20))) %>%
-    layout(xaxis = list(tickfont = list(size = 16))) %>%
+    layout(hoverlabel = list(font=list(size=.hoverlabeltextsize))) %>%
+    layout(xaxis = list(tickfont = list(size = .xaxistickfontsize))) %>%
     layout(margin = list(
       l = 10,
       r = 10,
